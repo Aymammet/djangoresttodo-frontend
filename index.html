@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset='utf-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <title>To Do</title>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+      <!-- <script src="https://kit.fontawesome.com/141373ab5e.js" crossorigin="anonymous"></script> -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> -->
+      <link rel="stylesheet" href="static/css/style.css">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-indigo-100" >
+    <div id="message" class="w-2/5 hidden">
+      <div id="alert-3" class="w-2/3 flex p-4 mb-4 bg-emerald-500 rounded-lg dark:bg-green-200" role="alert">
+        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        <div class="ml-3 text-sm font-medium text-white dark:text-green-800">
+          <p>Success</p>
+          <p id="displayMessage"></p>
+          
+        </div>
+        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-emerald-500 text-white rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-emerald-400 inline-flex h-8 w-8 dark:bg-green-200 dark:text-green-600 dark:hover:bg-green-300" data-collapse-toggle="alert-3" aria-label="Close">
+          <span class="sr-only">Close</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div id="register" class="hidden">
+      <div class="bg-indigo-100 flex justify-center items-center">
+	      <div class="mt-6 mb-6 lg:w-2/5 md:w-1/2 w-2/3">
+		      <form id="register-form" class="bg-white p-10 rounded-lg shadow-lg min-w-full">
+			      <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Register</h1>
+			      <div>
+				      <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Username</label>
+				      <input id="register-username" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="username" id="username" placeholder="username" />
+              <p id="username-error" class="error mt-2 text-red-500 text-xs italic is-hidden "></p>
+            </div>
+            <div>
+				      <label class="text-gray-800 font-semibold block my-3 text-md" for="username">First Name</label>
+				      <input id="register-first-name" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="username" id="username" placeholder="first name" />
+              <p id="first-name-error" class="error mt-2 text-red-500 text-xs italic is-hidden"></p>
+            </div>
+            <div>
+				      <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Last Name</label>
+				      <input id="register-last-name" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="username" id="username" placeholder="last name" />
+              <p id="last-name-error" class="error mt-2 text-red-500 text-xs italic is-hidden"></p>
+            </div>
+				    <div>
+					    <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Email</label>
+					    <input id="register-email" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="email" id="email" placeholder="@email" />
+              <p id="email-error" class="error mt-2 text-red-500 text-xs italic is-hidden"></p>
+
+            </div>
+					  <div>
+						  <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Password</label>
+						  <input id="register-password1" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="password" name="password" id="password" placeholder="password" />
+              <p id="password1-error" class="error mt-2 text-red-500 text-xs italic is-hidden">Please choose a password.</p>
+            </div>
+						<div>
+							<label class="text-gray-800 font-semibold block my-3 text-md" for="confirm">Confirm password</label>
+							<input id="register-password2" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="password" name="confirm" id="confirm" placeholder="confirm password" />
+              <p id="password2-error" class="error mt-2 text-red-500 text-xs italic is-hidden">Please choose a password.</p>
+            </div>
+						<button id="register-button" class="w-full mt-5 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Register</button>
+						<button id="login-link" type="reset" class="w-full mt-3 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans">Go to Login Page</button>
+		      </form>
+	      </div>
+      </div>  
+    </div>
+
+    <div id="login" class="hidden" >
+      <div class=" bg-indigo-100 flex justify-center items-center">
+	      <div class="mt-6 mb-6 lg:w-2/5 md:w-1/2 w-2/3">
+		      <form id="login-form" class="bg-white p-10 rounded-lg shadow-lg min-w-full">
+			      <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Login</h1>
+			      <div>
+				      <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Username</label>
+				      <input id="login-username" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="username" id="username" placeholder="username" />
+              <p id="login-username-error" class="error mt-2 text-red-500 text-xs italic is-hidden"></p>
+            </div>
+					  <div>
+						  <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Password</label>
+						  <input id="login-password" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="password" name="password" id="password" placeholder="password" />
+              <p id="login-password-error" class="error mt-2 text-red-500 text-xs italic is-hidden"></p>
+            </div>
+						<button id="login-button" class="w-full mt-5 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Login</button>
+						<button id="register-link" type="reset" class="w-full mt-3 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans">Go to Register Page</button>
+		      </form>
+	      </div>
+      </div>
+    </div>
+
+    <div id="main" class="container bg-indigo-100 ">
+      <div class="mt-6 mb-6 holder overflow-hidden w-5/6 box-border border border-b-4 rounded-r-md shadow-xl  mx-auto">
+        <div id="header" class=" flex justify-between h-32 md:h-20 top bg-indigo-600 text-white p-2 px-4 uppercase">
+          <div class="w-4/5">
+            <p>Welcome Admin</p>
+            <!-- <p>You have 3 incompleted tasks</p> -->
+          </div>
+          <div class="w-auto">
+            <button id="logout-button" class="w-full hover:bg-gray-300 bg-white rounded-lg px-4 py-2 text-md text-indigo-600 tracking-wide font-semibold font-sans">Logout</button>
+          </div>
+        </div>
+       
+        <div class="box-border px-4 py-4">
+            <div class="flex items-center justify-between">
+              <div class="w-11/12 mr-2 flex justify-start bg-gray-50 items-center p-2 rounded-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd" />
+                </svg>
+                <input id="searchInput" class="bg-gray-50 w-full outline-none ml-1 block " type="text" name="" id="" placeholder="search...">
+              </div>
+              <div class="w-auto flex justify-end space-x-8">
+                  <button id="createTaskSection" class="hover:bg-indigo-500 bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Create</button>
+              </div>
+            </div>
+        </div>
+        <div id="createFormSection" class="mx-1 hidden w-full bg-gray-300">
+          <form id="add-task-form" class="px-4 py-3">
+            <div class="md:flex items-center mt-4">
+                <div class="w-full flex flex-col">
+                    <label class="font-semibold leading-none">Title</label>
+                    <input id="title" type="text" class="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-1 bg-gray-100 border rounded border-gray-200"/>
+                    <p id="title-error" class="error mt-2 text-red-500 text-xs italic is-hidden "></p>
+
+                </div>
+            </div>
+            <div>
+                <div class="w-full flex flex-col mt-4">
+                    <label class="font-semibold leading-none">Description</label>
+                    <textarea id="description" type="text" class="mt-1 h-40 text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-blue-700  bg-gray-100 border rounded border-gray-200"></textarea>
+                    <p id="description-error" class="error mt-2 text-red-500 text-xs italic is-hidden "></p>
+
+                </div>
+            </div>
+            <div class="w-1/5  mt-4">
+              <label class="mt-4 font-semibold leading-none">Priority</label>
+              <div class="relative">
+                <select id="priority" class="text-center cursor-pointer block appearance-none mt-1 w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-2 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High" >High</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-around w-full">
+                <button id="submit-button" type="submit" class="w-1/5 mt-6 font-semibold leading-none text-white py-4 px-4 bg-green-600 rounded hover:bg-green-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+                  Create
+                </button>
+                <button id="cancel" type="reset" class="w-1/5 mt-6 font-semibold leading-none text-white py-4 px-4 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+                  Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+        <div id="tasksWrapper" class="hidden min-w-screen bg-indigo-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+          <div class="w-full  px-4 bg-indigo-100">
+            <div class="bg-white shadow-md rounded my-1">
+              <table id="taskTable" class="w-full table-auto">
+                  <thead>
+                      <tr class="bg-gray-300 text-gray-600 uppercase text-sm leading-normal">
+                        <th id="titleHeader" class=" cursor-pointer py-3 px-2 text-left hover:text-gray-900">Title</th>
+                        <th id="priorityHeader" class="cursor-pointer py-3 px-2 text-center hover:text-gray-900">Priority</th>
+                        <th class=" flex justify-center  cursor-pointer py-3 px-2 text-center hover:text-gray-900">
+                          <span id="statusHeader" >Status</span>
+                          <div class="flex justify-center">
+                            <div x-data="{ dropdownOpen: false }" class="relative">
+                              <button id="statusFilterButton" @click="dropdownOpen = !dropdownOpen" class="relative z-10 block rounded-md  focus:outline-none">
+                                <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                              </button>
+                              <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+                              <div x-show="dropdownOpen" class="absolute right-0 mt-2 py-2 w-32 bg-white rounded-md shadow-xl z-20">
+                                <a @click="dropdownOpen = !dropdownOpen" onclick="changeFilter('In Progress'); return false;" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-200 hover:text-white">
+                                  <span id="dropdownScheduled" class="bg-purple-600 text-white  py-1 px-3 rounded-full text-xs">In Progress</span>
+                                </a>
+                                <a @click="dropdownOpen = !dropdownOpen" onclick="changeFilter('Scheduled'); return false;"  class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-200 hover:text-white">
+                                  <span class="bg-yellow-600  text-white  py-1 px-3 rounded-full text-xs">Scheduled</span>
+                                </a>
+                                <a @click="dropdownOpen = !dropdownOpen" onclick="changeFilter('Completed'); return false;" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-200 hover:text-white">
+                                  <span class="bg-green-600  text-white py-1 px-3 rounded-full text-xs">Complete</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </th>
+
+                      </tr>
+                  </thead>
+                  <tbody id="taskBody" class="text-gray-600 text-sm font-light">
+                      <tr id="sampleTask" class="cursor-pointer hidden border-b border-gray-200 hover:bg-gray-100">
+                          <td class="task-title w-1/3 py-3 px-2 text-left whitespace-normal">
+                              <div class="items-center">
+                                  <span id="taskTitle" class="font-medium"></span>
+                              </div>
+                          </td>
+                          <td class="task-priority w-1/3 py-3 px-2 text-center">
+                              <div class="text-center">
+                                  <span id="taskPriority"></span>
+                              </div>
+                          </td>
+                          <td class="task-status w-1/3 py-3 px-2 text-center">
+                              <span id="taskStatus" class="text-white py-1 px-3 rounded-full text-xs"></span>
+                          </td>
+                      </tr>
+                      <!-- <tr class="border-b border-gray-200 hover:bg-gray-100">
+                          <td class="py-3 px-6 text-left whitespace-nowrap">
+                            <div class="flex items-center">
+                                <span class="font-medium">Provide chess tournament</span>
+                            </div>
+                          </td>
+                          <td class="py-3 px-6 text-left">
+                            <div class="flex items-center">
+                                <span>Medium</span>
+                            </div>
+                          </td>
+                          <td class="py-3 px-6 text-center">
+                            <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Scheduled</span>
+                          </td>
+                      </tr> -->
+                    <!-- <tr class="border-b border-gray-200 hover:bg-gray-100">
+                      <td class="py-3 px-6 text-left whitespace-nowrap">
+                          <div class="flex items-center">
+                              <span class="font-medium">Provide chess tournament</span>
+                          </div>
+                      </td>
+                      <td class="py-3 px-6 text-left">
+                          <div class="flex items-center">
+                              <span>Medium</span>
+                          </div>
+                      </td>
+                    
+                      <td class="py-3 px-6 text-center">
+                        <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Completed</span>
+                      </td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- pag -->
+          <div id="paginateMenu" class="hidden my-4 flex justify-center">
+            <nav aria-label="Page navigation example">
+              <ul id="pages" class="flex list-style-none">
+                <li id="previousPage" class="page-item disabled"><a
+                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
+                    href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
+                <div class="flex" id="pageNumbers">
+                  <!-- <li class="page-item">
+                    <a
+                      class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                      href="#">1
+                    </a></li> -->
+                </div>
+                  
+                <li id="nextPage" class="page-item disabled ">
+                  <a
+                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                    >Next</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- pag end -->
+        </div>
+    </div>
+  </body>
+
+
+
+<!-- Success -->
+
+<!-- <div class="placeholder mb-28"></div> -->
+      
+
+
+ 
+
+
+
+
+
+    <!-- <div class="container main">
+      <div class="header-bar" >
+        <div style="display: flex; justify-content: space-between;">
+          <div class="content">
+            <h1 id="welcome-username">Welcome</h1>
+            <h3 id="welcome-text"> Please register</h3>
+              <h3>You have <i id="incompleted-tasks">0</i> incompleted tasks</h3>
+          </div>
+          <div>
+            <button id="register-link" class="button is-info is-hidden">Go to Register</button>
+            <button id="login-link" class="button is-info">Go to Login</button>
+            <button id="logout-button" class="button is-info is-hidden">Logout</button>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end;">
+          <i id="add-task-icon" class="fas fa-plus fa-2x is-hidden"></i>
+        </div>
+        <form id="add-task-form" class="is-hidden">
+          <div class="field">
+            <label class="label">Title</label>
+              <div class="control">
+                <input id ="title" class="input" type="text" placeholder="Task title">
+              </div>
+              <p id="title-error" class="error help is-danger is-hidden"></p>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea id ="description" class="textarea" placeholder="Task details"></textarea>
+            </div>
+            <p id="description-error" class="error help is-danger is-hidden"></p>     
+          </div>
+          <div class="field">
+            <label class="label">Priority</label>
+            <div class="control">
+              <div class="select">
+                <select id="priority" name="Priority">
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button type="submit" id="submit-button"  class="button is-link">Submit</button>
+            </div>
+            <div class="control">
+              <button id="cancel-button" class="button is-link is-light">Cancel</button>
+            </div>
+          </div>
+        </form>        
+      </div>
+      <div id="register">
+        <form id="register-form">
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control has-icons-left">
+              <input id="register-username" class="input" placeholder="Username">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user-tie"></i>
+              </span>
+            </div>
+            <p id="username-error" class="error help is-danger is-hidden">This username is not available</p>
+          </div>
+          <div class="field">
+            <label class="label">First name</label>
+            <div class="control has-icons-left">
+              <input id="register-first-name" class="input"  placeholder="First name">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+            </div>
+            <p id="first-name-error" class="error help is-danger is-hidden">This username is available</p>
+          </div>
+          <div class="field">
+            <label class="label">Last name</label>
+              <div class="control has-icons-left">
+                <input id="register-last-name" class="input"  placeholder="Last name">
+                <span class="icon is-small is-left">
+                  <i class="far fa-user"></i>
+                </span>
+              </div>
+              <p id="last-name-error" class="error help is-danger is-hidden">This username is available</p>
+          </div>
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+              <input id="register-email" class="input"  placeholder="Email">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+            <p id="email-error" class="error help is-danger is-hidden">This email is invalid</p>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+              <input id="register-password1" class="input" type="password" placeholder="Password">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+            <p id="password1-error" class="error help is-danger is-hidden">This email is invalid</p>
+          </div>
+          <div class="field">
+            <label class="label">Confirm password</label>
+            <div class="control has-icons-left">
+              <input id="register-password2" class="input" type="password" placeholder="Password">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+            <p id="password2-error" class="error help is-danger is-hidden">This email is invalid</p>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button id="register-button" class="button is-link">Register</button>
+            </div>
+            <div class="control">
+              <button id="cancel-register" class="button is-link is-light">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="login" class="is-hidden">
+        <form id="login-form">
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control has-icons-left">
+              <input id="username" class="input" placeholder="Username">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user-tie"></i>
+              </span>
+            </div>
+            <p id="login-username-error" class="error help is-danger is-hidden"></p>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+              <input id="password" class="input" type="password" placeholder="Password">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+            <p id="login-password-error" class="error help is-danger is-hidden"></p>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button id="login-button" class="button is-link">Login</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <form id="search-form" >
+        <div class="field">
+          <label class="label">Search</label>
+          <div class="control">
+            <input id ="search-input" class="input" type="text" placeholder="Search task">
+          </div>
+        </div>
+      </form>
+      <div id="tasks"></div>
+      <div class="column">
+        <nav id="pagination-menu" class="pagination is-hidden is-centered" role="navigation" aria-label="pagination">
+          <a class="pagination-previous is-hidden" title="This is the first page">Previous</a>
+          <a class="pagination-next is-hidden">Next page</a>
+          <ul class="pagination-list">
+        </nav>
+      </div>
+    </div>
+    
+    <div id="info" class="is-hidden"> 
+      <p></p>
+    </div>
+    <div id="dropdown">
+      <div id="dropdown-status" class="dropdown is-hidden is-right">
+        <div class="dropdown-trigger buttons has-addons">
+          <button class="button is-info sort-button">
+            <span>Status</span>
+          </button>
+          <button class="button dropdown-button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div> 
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a id="filterDone" class="dropdown-item">Done</a>
+            <a id="filterInProgress" class="dropdown-item"> In progress</a>
+          </div> 
+        </div> 
+      </div>
+    </div> -->
+  <!-- </body> -->
+  <!-- <script src="https://unpkg.com/flowbite@latest/dist/flowbite.bundle.js"></script> -->
+  <script src="https://unpkg.com/flowbite@1.3.3/dist/flowbite.js"></script>
+  <script src="static/js/network.js" ></script>
+  <script src="static/js/render.js" ></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () { 
+      checkLoginState();
+    })
+  </script>
+</html>
