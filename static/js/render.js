@@ -60,7 +60,7 @@ function showMainPage(username) {
 }
 
 function showLoginPage() {
-    // console.log('login page')
+    console.log('login page')
     main.classList.add('hidden')
     registerSection.classList.add('hidden')
     loginSection.classList.remove('hidden')

@@ -60,7 +60,7 @@ async function login() {
     var username = document.getElementById('login-username').value;
     var password = document.getElementById('login-password').value;
     var loginForm = document.getElementById('login-form')
-    var loginUrl = "http://127.0.0.1:8000/login/";
+    var loginUrl = "https://todo-aymammet.herokuapp.com/login/";
     
     response = await fetch(loginUrl, {
         method : 'POST',
@@ -132,7 +132,7 @@ function getTasks(url) {
 }
 
 function updateUrl() {
-    var currentUrl = 'http://127.0.0.1:8000/tasks?' + 'search=' + url["search"] + '&status=' +  url["status"] + '&page=' + url["page"]
+    var currentUrl = ' https://todo-aymammet.herokuapp.com/tasks?' + 'search=' + url["search"] + '&status=' +  url["status"] + '&page=' + url["page"]
     return currentUrl
 }
 
