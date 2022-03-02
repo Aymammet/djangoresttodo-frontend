@@ -26,7 +26,8 @@ async function register() {
     var registerPassword1 = document.getElementById('register-password1').value;
     var registerPassword2 = document.getElementById('register-password2').value;
     var registerForm = document.getElementById('register-form')
-    var registerUrl = "http://127.0.0.1:8000/register/"; 
+    var registerUrl = "http://todo-aymammet.herokuapp.com/register/"; 
+    // 'todo-aymammet.herokuapp.com'
     // console.log(9)
     response = await fetch(registerUrl, {
         method : 'POST',
@@ -60,7 +61,7 @@ async function login() {
     var username = document.getElementById('login-username').value;
     var password = document.getElementById('login-password').value;
     var loginForm = document.getElementById('login-form')
-    var loginUrl = "http://127.0.0.1:8000/login/";
+    var loginUrl = "http://todo-aymammet.herokuapp.com/login/";
     
     response = await fetch(loginUrl, {
         method : 'POST',
@@ -132,7 +133,7 @@ function getTasks(url) {
 }
 
 function updateUrl() {
-    var currentUrl = 'http://127.0.0.1:8000/tasks?' + 'search=' + url["search"] + '&status=' +  url["status"] + '&page=' + url["page"]
+    var currentUrl = 'http://todo-aymammet.herokuapp.com/tasks?' + 'search=' + url["search"] + '&status=' +  url["status"] + '&page=' + url["page"]
     return currentUrl
 }
 
@@ -144,7 +145,7 @@ function changeFilter(filter) {
 }
 
 function logout() {
-    var logoutUrl = "http://127.0.0.1:8000/logout/";
+    var logoutUrl = "http://todo-aymammet.herokuapp.com/logout/";
 
     fetch(logoutUrl, {
         method: 'GET',
@@ -174,7 +175,7 @@ async function createTask() {
         var title = document.getElementById('title').value
         var description = document.getElementById('description').value
         var priority = document.getElementById('priority').value
-        var addTaskUrl = "http://127.0.0.1:8000/tasks/"
+        var addTaskUrl = "http://todo-aymammet.herokuapp.com/tasks/"
 
         response = await fetch(addTaskUrl, {
             method : 'POST',
@@ -209,7 +210,7 @@ async function editTask(id) {
         var updateTitle = document.getElementById('edit-title').value
         var updateDescription = document.getElementById('edit-description').value
         var updatePriority = document.getElementById('edit-priority').value
-        var editTaskUrl = "http://127.0.0.1:8000/tasks/"  + id + '/'
+        var editTaskUrl = "http://todo-aymammet.herokuapp.com/tasks/"  + id + '/'
         
         response = await fetch(editTaskUrl, {
             method : 'PUT',
@@ -239,7 +240,7 @@ async function editTask(id) {
 }
 
 function deleteTask(id) {
-    var deleteUrl = "http://127.0.0.1:8000/tasks/"  + id + '/'
+    var deleteUrl = "http://todo-aymammet.herokuapp.com/tasks/"  + id + '/'
     fetch(deleteUrl, {
         method : 'DELETE',
         headers: {
@@ -256,7 +257,7 @@ function deleteTask(id) {
 
 
 async function changeState(state,task) {
-    var editTaskUrl = "http://127.0.0.1:8000/tasks/"  + task.id + '/'
+    var editTaskUrl = "http://todo-aymammet.herokuapp.com/tasks/"  + task.id + '/'
     response = await fetch(editTaskUrl, {
         method : 'PUT',
         headers: {
@@ -318,11 +319,11 @@ statusHeader.addEventListener("click", function() {
 var sort = 'asc'
 async function order(parameter) {
     if (sort == 'asc') {
-        var orderUrl = "http://127.0.0.1:8000/tasks?ordering=" + parameter;
+        var orderUrl = "http://todo-aymammet.herokuapp.com/tasks?ordering=" + parameter;
         sort = 'desc'
     }
     else {
-        var orderUrl = "http://127.0.0.1:8000/tasks?ordering=" + '-' + parameter;
+        var orderUrl = "http://todo-aymammet.herokuapp.com/tasks?ordering=" + '-' + parameter;
         sort = 'asc'
     }
     token = myStorage.getItem('token');
