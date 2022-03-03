@@ -1,17 +1,7 @@
-var searchForm = document.getElementById('search-form')
-var addTaskForm = document.getElementById('add-task-form')
-
-
 function checkLoginState() {
     token = myStorage.getItem('token');
     if(token) {
-        // tokenState = checkTokenIsValid()
-        if (token) {
-            showMainPage()
-        }
-        else {
-            showLoginPage()
-        }
+        showMainPage()
     }
     else {
         showLoginPage()
@@ -27,8 +17,6 @@ async function register() {
     var registerPassword2 = document.getElementById('register-password2').value;
     var registerForm = document.getElementById('register-form')
     var registerUrl = "https://todo-aymammet.herokuapp.com/register/"; 
-    // 'todo-aymammet.herokuapp.com'
-    // console.log(9)
     response = await fetch(registerUrl, {
         method : 'POST',
         headers: {
@@ -51,9 +39,7 @@ async function register() {
     }
     else {
         let data = await response.json();
-        // console.log(data)
         displayRegisterError(data)
-
     }
 }
 
@@ -79,7 +65,8 @@ async function login() {
         myStorage.setItem('token', data['Token']);
         myStorage.setItem('username', data['username']);
         loginForm.reset()
-        displayInfo('You logged in as ...');
+        var message = 'You logged in as ...' + data['username']
+        displayInfo(message);
         showMainPage()
     }
     else {
@@ -96,17 +83,6 @@ function getTasks(url) {
         mainUrl = updateUrl()
     }   
 
-    // console.log('c')
-    // console.log(mainUrl)
-    // searchInputValue = searchInput.value
-    
-    // console.log(url)
-    // if (filter) {
-    //     var url = url + '?status=' + filter + '&search=' + searchInputValue
-    // }
-    // else {
-    //     var url = url  + '?search=' + searchInputValue
-    // }
     token = myStorage.getItem('token');
     if (token) {
         fetch(mainUrl, {
@@ -119,7 +95,6 @@ function getTasks(url) {
         })
         .then((resp) => resp.json())
         .then(function(data) {
-            // console.log(data)
             results = data['results']
             tasks = []
             for(i = 0; i<results.length; i++) {
@@ -129,7 +104,6 @@ function getTasks(url) {
             showPaginateMenu(data)
         })
     }
-
 }
 
 function updateUrl() {
@@ -138,9 +112,7 @@ function updateUrl() {
 }
 
 function changeFilter(filter) {
-    console.log(filter)
     url["status"] = filter
-    // updateUrl()
     getTasks()
 }
 
@@ -160,7 +132,6 @@ function logout() {
             displayInfo('Successifully Logged out');
             myStorage.removeItem('token');
             myStorage.removeItem('username');
-            // greetingText.innerHTML = ''
             showLoginPage()
     })
 }
@@ -169,7 +140,6 @@ addTaskForm.addEventListener("submit", function(e) {
     e.preventDefault();
     createTask()
 })
-
 
 async function createTask() {
         var title = document.getElementById('title').value
@@ -205,7 +175,6 @@ document.getElementById('cancel').addEventListener("click", function() {
     createFormSection.classList.add('hidden')
 })
 
-
 async function editTask(id) {
         var updateTitle = document.getElementById('edit-title').value
         var updateDescription = document.getElementById('edit-description').value
@@ -222,14 +191,12 @@ async function editTask(id) {
                 'title': updateTitle, 
                 'description': updateDescription,
                 'priority' : updatePriority
-            
             })
         })
         if (response.status === 200) {
-            console.log('989898')
             editTaskForm.reset()
             editTaskForm.classList.add('is-hidden')
-            displayInfo('Task is edited');
+            displayInfo('Task is updated');
             getTasks()
         }
         else {
@@ -254,7 +221,6 @@ function deleteTask(id) {
         displayInfo('Task is deleted');
     })
 }
-
 
 async function changeState(state,task) {
     var editTaskUrl = "https://todo-aymammet.herokuapp.com/tasks/"  + task.id + '/'
@@ -281,30 +247,6 @@ searchInput.addEventListener("keyup", function(){
     getTasks()
 })
 
-// async function search() {
-//     inputValue = searchInput.value
-//     var searchUrl = "http://127.0.0.1:8000/tasks?search=" + inputValue;
-//     token = myStorage.getItem('token');
-//     response = await fetch(searchUrl, {
-//         method: 'GET',
-//         credentials: 'include',
-//         headers: {
-//             'Authorization': 'Token ' + token,
-//             'Content-Type': 'application/json'
-//         },
-//     })
-//     if (response.status == 200) {
-        
-//         let data = await response.json();
-//         results = data['results']
-//         tasks = []
-//         for(i = 0; i<results.length; i++) {
-//             tasks.push(results[i])
-//         }
-//         placeAllTasks(data)
-//     }
-// }
-
 titleHeader.addEventListener("click", function() {
     order('title')
 })
@@ -316,6 +258,7 @@ priorityHeader.addEventListener("click", function() {
 statusHeader.addEventListener("click", function() {
     order('status')
 })
+
 var sort = 'asc'
 async function order(parameter) {
     if (sort == 'asc') {
@@ -345,6 +288,3 @@ async function order(parameter) {
         placeAllTasks(data)
     }
 }
-
-
-

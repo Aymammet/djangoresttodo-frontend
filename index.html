@@ -5,16 +5,15 @@
       <meta http-equiv='X-UA-Compatible' content='IE=edge'>
       <title>To Do</title>
       <meta name='viewport' content='width=device-width, initial-scale=1'>
-      <!-- <script src="https://kit.fontawesome.com/141373ab5e.js" crossorigin="anonymous"></script> -->
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> -->
       <link rel="stylesheet" href="static/css/style.css">
       <script src="https://cdn.tailwindcss.com"></script>
       <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   </head>
   <body class="bg-indigo-100" >
+
     <div id="message" class="w-2/5 hidden">
       <div id="alert-3" class="w-2/3 flex p-4 mb-4 bg-emerald-500 rounded-lg dark:bg-green-200" role="alert">
         <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -29,6 +28,7 @@
         </button>
       </div>
     </div>
+
     <div id="register" class="hidden">
       <div class="bg-indigo-100 flex justify-center items-center">
 	      <div class="mt-6 mb-6 lg:w-2/5 md:w-1/2 w-2/3">
@@ -53,7 +53,6 @@
 					    <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Email</label>
 					    <input id="register-email" class="input w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="email" id="email" placeholder="@email" />
               <p id="email-error" class="error mt-2 text-red-500 text-xs italic is-hidden"></p>
-
             </div>
 					  <div>
 						  <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Password</label>
@@ -122,6 +121,7 @@
               </div>
             </div>
         </div>
+
         <div id="createFormSection" class="mx-1 hidden w-full bg-gray-300">
           <form id="add-task-form" class="px-4 py-3">
             <div class="md:flex items-center mt-4">
@@ -163,6 +163,7 @@
             </div>
           </form>
         </div>
+
         <div id="tasksWrapper" class="hidden min-w-screen bg-indigo-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
           <div class="w-full  px-4 bg-indigo-100">
             <div class="bg-white shadow-md rounded my-1">
@@ -195,68 +196,38 @@
                             </div>
                           </div>
                         </th>
-
                       </tr>
                   </thead>
                   <tbody id="taskBody" class="text-gray-600 text-sm font-light">
-                      <tr id="sampleTask" class="cursor-pointer hidden border-b border-gray-200 hover:bg-gray-100">
-                          <td class="task-title w-1/3 py-3 px-2 text-left whitespace-normal">
-                              <div class="items-center">
-                                  <span id="taskTitle" class="font-medium"></span>
-                              </div>
-                          </td>
-                          <td class="task-priority w-1/3 py-3 px-2 text-center">
-                              <div class="text-center">
-                                  <span id="taskPriority"></span>
-                              </div>
-                          </td>
-                          <td class="task-status w-1/3 py-3 px-2 text-center">
-                              <span id="taskStatus" class="text-white py-1 px-3 rounded-full text-xs"></span>
-                          </td>
-                      </tr>
-                      <!-- <tr class="border-b border-gray-200 hover:bg-gray-100">
-                          <td class="py-3 px-6 text-left whitespace-nowrap">
-                            <div class="flex items-center">
-                                <span class="font-medium">Provide chess tournament</span>
-                            </div>
-                          </td>
-                          <td class="py-3 px-6 text-left">
-                            <div class="flex items-center">
-                                <span>Medium</span>
-                            </div>
-                          </td>
-                          <td class="py-3 px-6 text-center">
-                            <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Scheduled</span>
-                          </td>
-                      </tr> -->
-                    <!-- <tr class="border-b border-gray-200 hover:bg-gray-100">
-                      <td class="py-3 px-6 text-left whitespace-nowrap">
-                          <div class="flex items-center">
-                              <span class="font-medium">Provide chess tournament</span>
-                          </div>
+                    <tr id="sampleTask" class="cursor-pointer hidden border-b border-gray-200 hover:bg-gray-100">
+                      <td class="task-title w-1/3 py-3 px-2 text-left whitespace-normal">
+                        <div class="items-center">
+                          <span id="taskTitle" class="font-medium"></span>
+                        </div>
                       </td>
-                      <td class="py-3 px-6 text-left">
-                          <div class="flex items-center">
-                              <span>Medium</span>
-                          </div>
+                      <td class="task-priority w-1/3 py-3 px-2 text-center">
+                        <div class="text-center">
+                          <span id="taskPriority"></span>
+                        </div>
                       </td>
-                    
-                      <td class="py-3 px-6 text-center">
-                        <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Completed</span>
+                      <td class="task-status w-1/3 py-3 px-2 text-center">
+                          <span id="taskStatus" class="text-white py-1 px-3 rounded-full text-xs"></span>
                       </td>
-                    </tr> -->
+                    </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <!-- pag -->
+          
           <div id="paginateMenu" class="hidden my-4 flex justify-center">
             <nav aria-label="Page navigation example">
               <ul id="pages" class="flex list-style-none">
-                <li id="previousPage" class="page-item disabled"><a
-                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-                    href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
+                <li id="previousPage" class="page-item disabled">
+                  <a class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none" href="#" tabindex="-1" aria-disabled="true">
+                    Previous
+                  </a>
+                </li>
                 <div class="flex" id="pageNumbers">
                   <!-- <li class="page-item">
                     <a
@@ -266,13 +237,13 @@
                 </div>
                   
                 <li id="nextPage" class="page-item disabled ">
-                  <a
-                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                    >Next</a></li>
+                  <a class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none">
+                    Next
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
-          <!-- pag end -->
         </div>
     </div>
   </body>
@@ -495,6 +466,8 @@
   <script src="https://unpkg.com/flowbite@1.3.3/dist/flowbite.js"></script>
   <script src="static/js/network.js" ></script>
   <script src="static/js/render.js" ></script>
+  <!-- <script src="static/js/constants.js" ></script> -->
+  
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () { 
