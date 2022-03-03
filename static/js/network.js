@@ -136,6 +136,8 @@ function logout() {
     })
 }
 
+var addTaskForm = document.getElementById('add-task-form')
+
 addTaskForm.addEventListener("submit", function(e) {
     e.preventDefault();
     createTask()

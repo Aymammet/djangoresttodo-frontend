@@ -415,5 +415,6 @@ function setLinksToPagination(data) {
             getTasks(linkToPage)
         })
     }
+    
 }
 
