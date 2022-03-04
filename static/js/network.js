@@ -6,9 +6,6 @@ else {
     var url = "https://todo-aymammet.herokuapp.com/"
 }
 
-console.log(url)
-
-
 function checkLoginState() {
     token = myStorage.getItem('token');
     if(token) {
@@ -45,7 +42,7 @@ async function register() {
     if (response.status === 201) {
         let data = await response.json();
         registerForm.reset()
-        displayInfo('Successifully registered');
+        displayInfo('Successifully registered ' + registerUsername);
         showLoginPage();
     }
     else {
@@ -76,8 +73,10 @@ async function login() {
         myStorage.setItem('token', data['Token']);
         myStorage.setItem('username', data['username']);
         loginForm.reset()
-        var message = 'You logged in as ...' + data['username']
+        var message = 'You logged in as ' + data['username']
         displayInfo(message);
+        userUsername.innerHTML = data['username']
+        console.log(userUsername)
         showMainPage()
     }
     else {
@@ -88,16 +87,13 @@ async function login() {
 
 function getTasks(link) { 
     if (link) {
-        console.log(9)
         mainUrl = link
     }
     else {
-        console.log(10)
         mainUrl = updateUrl()
     }   
 
     token = myStorage.getItem('token');
-    console.log(mainUrl)
     if (token) {
         fetch(mainUrl, {
             method: 'GET',
@@ -122,10 +118,20 @@ function getTasks(link) {
 
 function updateUrl() {
     var currentUrl = url + 'tasks?' + 'search=' + queryp["search"] + '&status=' +  queryp["status"] + '&page=' + queryp["page"]
-    console.log(99)
-    console.log(currentUrl)
     return currentUrl
 }
+
+document.getElementById('filter-in-progress').addEventListener("click", function() {
+    changeFilter('In Progress')
+})
+
+document.getElementById('filter-scheduled').addEventListener("click", function() {
+    changeFilter('Scheduled')
+})
+
+document.getElementById('filter-completed').addEventListener("click", function() {
+    changeFilter('Completed')
+})
 
 function changeFilter(filter) {
     queryp["status"] = filter
@@ -233,7 +239,6 @@ function deleteTask(id) {
         }
     })
     .then(function(data) {
-        console.log(data)
         getTasks();
         displayInfo('Your task is deleted');
     })

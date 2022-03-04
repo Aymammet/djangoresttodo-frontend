@@ -5,6 +5,7 @@ var registerLink = document.getElementById('register-link')
 var mainSection = document.getElementById('main')
 var loginSection = document.getElementById('login')
 var registerSection = document.getElementById('register')
+var userUsername = document.getElementById('user-username')
 var logoutButton = document.getElementById('logout-button')
 var registerButton = document.getElementById('register-button')
 var loginButton = document.getElementById('login-button')
@@ -20,14 +21,12 @@ var createFormSection = document.getElementById('createFormSection')
 var addTaskForm = document.getElementById('add-task-form')
 var detailIsActive = false
 var paginatedMenu = document.getElementById('paginateMenu')
-// var url = 'http://127.0.0.1:8000/tasks/'
 var queryp = {
     "search":"",
     "status" : "",
     "page" : "1 " 
 }
 var tasks = []
-
 
 function showMainPage() {
     loginSection.classList.add('hidden')
@@ -123,9 +122,13 @@ function placeTask(task) {
             changeState('Completed', task)
         })
     }
-    template.addEventListener("click", function() {
-        showTaskDetail(task, this)
+    template.querySelector('.task-title').addEventListener("click", function() {
+        showTaskDetail(task, this.parentElement)
     })
+    template.querySelector('.task-priority').addEventListener("click", function() {
+        showTaskDetail(task, this.parentElement)
+    })
+
     template.classList.remove('hidden')    
     return template
 }
@@ -273,7 +276,6 @@ function showTaskDetail(task, element) {
         deleteButton.addEventListener("click", function() {
             deleteTask(task.id)
         })
-        console.log(deleteButton)
         editTaskForm.addEventListener("submit", function(e) {
             e.preventDefault()
             editTask(task.id)
@@ -395,7 +397,6 @@ function setLinksToPagination(data) {
         var prPage = previousPage.cloneNode(true)
         previousPage.parentNode.replaceChild(prPage, previousPage)
         prPage.addEventListener("click", function() {
-            console.log(data['previous'])
             getTasks(data['previous'])
         })
     }
