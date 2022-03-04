@@ -21,7 +21,7 @@ var addTaskForm = document.getElementById('add-task-form')
 var detailIsActive = false
 var paginatedMenu = document.getElementById('paginateMenu')
 // var url = 'http://127.0.0.1:8000/tasks/'
-var url = {
+var queryp = {
     "search":"",
     "status" : "",
     "page" : "1 " 
@@ -410,11 +410,10 @@ function setLinksToPagination(data) {
     for (i=1; i < pageItems.length -1; i++) {
         pageItems[i].addEventListener('click', function() {
             linkToPage = 'http://127.0.0.1:8000/tasks/?page=' + this.id
-            url['page'] = this.id
-            console.log(url)
+            queryp['page'] = this.id
             getTasks(linkToPage)
         })
     }
-    
+
 }
 
