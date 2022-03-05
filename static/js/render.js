@@ -24,7 +24,7 @@ var paginatedMenu = document.getElementById('paginateMenu')
 var queryp = {
     "search":"",
     "status" : "",
-    "page" : "1 " 
+    "page" : "1" 
 }
 var tasks = []
 
@@ -379,10 +379,15 @@ function showPaginateMenu(data){
         for (i=1; i <= group;  i++ ) {
             li = previousPage.cloneNode(true)
             li.id = i
-            li.classList.remove('disabled')
-            a = li.querySelector('a')
-            a.innerHTML = i
-            a.href = ''
+            // li.classList.remove('bg-blue-600')
+            div = li.querySelector('div')
+            div.classList.remove('bg-blue-600')
+            div.classList.add('text-gray-800')
+            div.innerHTML = i
+            div.classList.remove('bg-transparent')
+            div.classList.add('cursor-pointer')
+            div.classList.add('hover:bg-gray-200')
+            div.href = ''
             pageNumbers.appendChild(li)
         }
     }
@@ -391,21 +396,25 @@ function showPaginateMenu(data){
 }
 
 function setLinksToPagination(data) {
+    // console.log(data)
     pageItems = document.getElementsByClassName('page-item')
+    var previousPage = document.getElementById('previousPage')
+    var prPage = previousPage.cloneNode(true)
+    previousPage.parentNode.replaceChild(prPage, previousPage)
+    var nextPage = document.getElementById('nextPage')
+    var nxPage = nextPage.cloneNode(true)
+    nextPage.parentNode.replaceChild(nxPage, nextPage)
+
     if (data['previous']) {
-        var previousPage = document.getElementById('previousPage')
-        var prPage = previousPage.cloneNode(true)
-        previousPage.parentNode.replaceChild(prPage, previousPage)
         prPage.addEventListener("click", function() {
             getTasks(data['previous'])
+            queryp['page'] = parseInt(queryp['page']) - 1
         })
     }
     if (data['next']) {
-        var nextPage = document.getElementById('nextPage')
-        var nxPage = nextPage.cloneNode(true)
-        nextPage.parentNode.replaceChild(nxPage, nextPage)
         nxPage.addEventListener("click", function() {
             getTasks(data['next'])
+            queryp['page'] = parseInt(queryp['page']) + 1
         })
     }
     for (i=1; i < pageItems.length -1; i++) {
@@ -415,6 +424,21 @@ function setLinksToPagination(data) {
             getTasks(linkToPage)
         })
     }
+    
+    for (i=1; i < pageItems.length -1; i++) {
+        if (pageItems[i].id == queryp['page']) {
+            pageItems[i].classList.add('active')
+            pageItems[i].querySelector('div').classList.add('bg-blue-600')
+            pageItems[i].querySelector('div').classList.remove('text-gray-800')
+            pageItems[i].querySelector('div').classList.add('text-white')
+            pageItems[i].querySelector('div').classList.add('hover:text-white')
+            pageItems[i].querySelector('div').classList.add('hover:bg-blue-600')
+            pageItems[i].querySelector('div').classList.add('shadow-md')
+            pageItems[i].querySelector('div').classList.add('focus:shadow-md')
 
+            console.log(pageItems[i])    
+        }
+        
+    }
 }
 

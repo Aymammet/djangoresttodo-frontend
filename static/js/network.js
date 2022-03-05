@@ -76,7 +76,6 @@ async function login() {
         var message = 'You logged in as ' + data['username']
         displayInfo(message);
         userUsername.innerHTML = data['username']
-        console.log(userUsername)
         showMainPage()
     }
     else {
@@ -112,6 +111,7 @@ function getTasks(link) {
             }
             placeAllTasks(data)
             showPaginateMenu(data)
+            userUsername.innerHTML = myStorage.getItem('username');
         })
     }
 }
