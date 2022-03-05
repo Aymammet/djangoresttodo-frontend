@@ -354,45 +354,47 @@ function removeInfo(){
 }
 
 function showPaginateMenu(data){
-    previousPage = document.getElementById('previousPage')
-    nextPage = document.getElementById('nextPage')
-    
-    if (data['next'] || data['previous']) {
-        if (data['previous']) {
-            previousPage.classList.remove('disabled')
-        }
-        if (!data['previous']) {
-            previousPage.classList.add('disabled')
-        }
-        if (data['next']) {
-            nextPage.classList.remove('disabled')
-        }
-        if (!data['next']) {
-            nextPage.classList.add('disabled')
-        }
+    if (data['count'] > 5) {
+        previousPage = document.getElementById('previousPage')
+        nextPage = document.getElementById('nextPage')
         
-        count =data['count']
-        group = Math.ceil(count/5)
-        pageNumbers = document.getElementById('pageNumbers')
-        pageNumbers.innerHTML = '' 
-        
-        for (i=1; i <= group;  i++ ) {
-            li = previousPage.cloneNode(true)
-            li.id = i
-            // li.classList.remove('bg-blue-600')
-            div = li.querySelector('div')
-            div.classList.remove('bg-blue-600')
-            div.classList.add('text-gray-800')
-            div.innerHTML = i
-            div.classList.remove('bg-transparent')
-            div.classList.add('cursor-pointer')
-            div.classList.add('hover:bg-gray-200')
-            div.href = ''
-            pageNumbers.appendChild(li)
+        if (data['next'] || data['previous']) {
+            if (data['previous']) {
+                previousPage.classList.remove('disabled')
+            }
+            if (!data['previous']) {
+                previousPage.classList.add('disabled')
+            }
+            if (data['next']) {
+                nextPage.classList.remove('disabled')
+            }
+            if (!data['next']) {
+                nextPage.classList.add('disabled')
+            }
+            
+            count =data['count']
+            group = Math.ceil(count/5)
+            pageNumbers = document.getElementById('pageNumbers')
+            pageNumbers.innerHTML = '' 
+            
+            for (i=1; i <= group;  i++ ) {
+                li = previousPage.cloneNode(true)
+                li.id = i
+                // li.classList.remove('bg-blue-600')
+                div = li.querySelector('div')
+                div.classList.remove('bg-blue-600')
+                div.classList.add('text-gray-800')
+                div.innerHTML = i
+                div.classList.remove('bg-transparent')
+                div.classList.add('cursor-pointer')
+                div.classList.add('hover:bg-gray-200')
+                div.href = ''
+                pageNumbers.appendChild(li)
+            }
         }
+        setLinksToPagination(data)
+        paginatedMenu.classList.remove('hidden')
     }
-    setLinksToPagination(data)
-    paginatedMenu.classList.remove('hidden')
 }
 
 function setLinksToPagination(data) {

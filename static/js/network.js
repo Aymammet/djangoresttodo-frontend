@@ -106,8 +106,11 @@ function getTasks(link) {
         .then(function(data) {
             results = data['results']
             tasks = []
-            for(i = 0; i<results.length; i++) {
-                tasks.push(results[i])
+            console.log(data)
+            if (data['results']) {
+                for(i = 0; i<results.length; i++) {
+                    tasks.push(results[i])
+                }
             }
             placeAllTasks(data)
             showPaginateMenu(data)
