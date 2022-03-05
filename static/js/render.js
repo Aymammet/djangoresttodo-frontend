@@ -398,7 +398,6 @@ function showPaginateMenu(data){
 }
 
 function setLinksToPagination(data) {
-    // console.log(data)
     pageItems = document.getElementsByClassName('page-item')
     var previousPage = document.getElementById('previousPage')
     var prPage = previousPage.cloneNode(true)
@@ -437,10 +436,6 @@ function setLinksToPagination(data) {
             pageItems[i].querySelector('div').classList.add('hover:bg-blue-600')
             pageItems[i].querySelector('div').classList.add('shadow-md')
             pageItems[i].querySelector('div').classList.add('focus:shadow-md')
-
-            console.log(pageItems[i])    
         }
-        
     }
 }
-

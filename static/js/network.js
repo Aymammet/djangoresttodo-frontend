@@ -106,7 +106,6 @@ function getTasks(link) {
         .then(function(data) {
             results = data['results']
             tasks = []
-            console.log(data)
             if (data['results']) {
                 for(i = 0; i<results.length; i++) {
                     tasks.push(results[i])
